@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "app_name": "burritobot",
+  "stages": {
+    "dev": {
+      "api_gateway_stage": "api",
+      "environment_variables": {
+        "SLACK_SIGNING_SECRET": "",
+        "SLACK_BOT_TOKEN": "",
+        "VERIFICATION_TOKEN": "",
+        "EMOJI": "burrito",
+        "EMOJI_PLURAL": "burritos",
+        "SLASH_COMMAND": "burritobot",
+        "MAX_POINTS_PER_SENDER_PER_DAY": "5",
+        "BOT_NAME": "BurritoBot",
+        "ADMIN_SLACK_USER": "",
+        "DYNAMO_TABLE_NAME": "burrito_points",
+        "LOG_LEVEL": "WARN"
+      }
+    },
+    "prd": {
+      "api_gateway_stage": "api",
+      "environment_variables": {
+        "SLACK_SIGNING_SECRET": "",
+        "SLACK_BOT_TOKEN": "",
+        "VERIFICATION_TOKEN": "",
+        "EMOJI": "burrito",
+        "EMOJI_PLURAL": "burritos",
+        "SLASH_COMMAND": "burritobot",
+        "MAX_POINTS_PER_SENDER_PER_DAY": "5",
+        "BOT_NAME": "BurritoBot",
+        "ADMIN_SLACK_USER": "",
+        "DYNAMO_TABLE_NAME": "burrito_points",
+        "LOG_LEVEL": "WARN"
+      }
+    }
+  }
+}

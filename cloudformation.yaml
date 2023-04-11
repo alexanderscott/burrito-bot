@@ -1,0 +1,25 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  BurritoPointsTable:
+    Properties:
+      AttributeDefinitions:
+      - AttributeName: sender
+        AttributeType: S
+      - AttributeName: datetime_given
+        AttributeType: S
+      KeySchema:
+      - AttributeName: sender
+        KeyType: HASH
+      - AttributeName: datetime_given
+        KeyType: RANGE
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
+      TableName: "burrito_points"
+    Type: AWS::DynamoDB::Table
+Outputs:
+  BurritoPointsTable:
+    Description: DynamoDB table indexing emoji logs.
+    Value:
+      Ref: BurritoPointsTable

@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "api_handler_name": "burritobot-dev",
+    "api_handler_arn": "arn:aws:lambda:us-west-2:542886694662:function:burritobot-dev",
+    "lambda_functions": {},
+    "backend": "api",
+    "chalice_version": "1.1.0",
+    "rest_api_id": "6slwmukjcg",
+    "api_gateway_stage": "api",
+    "region": "us-west-2"
+  }
+}
