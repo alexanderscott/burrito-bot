@@ -11,17 +11,11 @@ PST_TIMEZONE = pytz.timezone("America/Los_Angeles")
 
 
 class BotDB:
-    def __init__(self, table_name: str, endpoint_url: Optional[str] = None):
+    def __init__(self, table_name: str, **kwargs):
         self.table_name = table_name
 
-        # hack to use localhost dynamo which doesn't import AWS env vars
-        if endpoint_url:
-            self.dynamo_client = boto3.client('dynamodb', endpoint_url=endpoint_url)
-            self.dynamo_resource = boto3.resource('dynamodb', endpoint_url=endpoint_url)
-        else:
-            self.dynamo_client = boto3.client('dynamodb')
-            self.dynamo_resource = boto3.resource('dynamodb')
-
+        self.dynamo_client = boto3.client('dynamodb', **kwargs)
+        self.dynamo_resource = boto3.resource('dynamodb', **kwargs)
         self.dynamo_table = self.dynamo_resource.Table(table_name)
 
     @staticmethod

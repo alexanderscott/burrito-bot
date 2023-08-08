@@ -14,7 +14,13 @@ DB_ENDPOINT_URL = "http://localhost:8000"
 class PersistenceAdapterTestCase(TestCase):
 
     def setUp(self):
-        self.db = BotDB(DB_NAME, DB_ENDPOINT_URL)
+        self.db = BotDB(
+            DB_NAME,
+            aws_access_key_id="anything",
+            aws_secret_access_key="anything",
+            region_name="us-west-2",
+            endpoint_url=DB_ENDPOINT_URL,
+        )
         try:
             self.db.destroy_table()
         except Exception as e:

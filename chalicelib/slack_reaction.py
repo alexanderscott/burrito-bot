@@ -1,8 +1,6 @@
 import re
 
 
-
-
 class SlackReaction:
     MENTION_REGEX = '<@(|[WU].+?)>'
 
@@ -34,7 +32,8 @@ class SlackReaction:
             timestamp
         )
 
-    def count_emojis_in_message(self) -> int:
+    @staticmethod
+    def count_emojis_in_message() -> int:
         # A reaction is always worth 1 point
         return 1
 

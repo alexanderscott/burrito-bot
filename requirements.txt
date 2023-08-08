@@ -4,4 +4,5 @@ boto3==1.18.9
 botocore==1.21.9
 docutils==0.14
 pytz==2022.1
+chalice==1.27.1
 

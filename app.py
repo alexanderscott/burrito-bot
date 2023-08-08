@@ -6,7 +6,7 @@ from typing import Dict
 from slack_bolt import App
 from slack_bolt.adapter.aws_lambda.chalice_handler import ChaliceSlackRequestHandler
 
-from chalice import Chalice, Response, Cron, Rate
+from chalice import Chalice, Response, Cron
 
 from chalicelib.bot_service import BotService
 from chalicelib.slack_message import SlackMessage
@@ -44,7 +44,7 @@ def handle_emoji_reaction_added(client, event, logger):
 
     msg = SlackReaction.parse(event)
 
-    bot_service = BotService(client, DYNAMO_TABLE_NAME, DYNAMO_ENDPOINT_URL)
+    bot_service = BotService( client, DYNAMO_TABLE_NAME, **{'endpoint_url': DYNAMO_ENDPOINT_URL})
     bot_service.award_emoji_points_from_msg(msg)
 
 
@@ -71,7 +71,7 @@ def handle_emoji_message(client, message, logger):
         app.log.error(e)
         return
 
-    bot_service = BotService(client, DYNAMO_TABLE_NAME, DYNAMO_ENDPOINT_URL)
+    bot_service = BotService( client, DYNAMO_TABLE_NAME, **{'endpoint_url': DYNAMO_ENDPOINT_URL})
     bot_service.award_emoji_points_from_msg(msg)
 
 
@@ -87,7 +87,7 @@ def handle_slash_command(client, ack, respond, command):
         respond("Help text will go here!")
         return
 
-    bot_service = BotService(client, DYNAMO_TABLE_NAME, DYNAMO_ENDPOINT_URL)
+    bot_service = BotService( client, DYNAMO_TABLE_NAME, **{'endpoint_url': DYNAMO_ENDPOINT_URL})
 
     if subcommand == EMOJI_PLURAL:
         points_sent = bot_service.get_user_points_sent_today(command['user_id'])
