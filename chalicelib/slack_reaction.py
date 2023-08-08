@@ -1,8 +1,6 @@
 import re
 
 
-
-
 class SlackReaction:
     MENTION_REGEX = '<@(|[WU].+?)>'
 

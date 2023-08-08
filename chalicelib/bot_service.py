@@ -1,4 +1,4 @@
-from typing import List, Tuple, Optional
+from typing import Tuple, Optional
 
 from slack_sdk import WebClient
 
@@ -9,12 +9,8 @@ from chalicelib.response_generator import *
 
 class BotService:
 
-    def __init__(self, slack_client: WebClient, table_name: str, endpoint_url: Optional[str] = None):
-        if endpoint_url:
-            self.db = BotDB(table_name, endpoint_url)
-        else:
-            self.db = BotDB(table_name)
-
+    def __init__(self, slack_client: WebClient, table_name: str, **kwargs):
+        self.db = BotDB(table_name, **kwargs)
         self.client = slack_client
 
     def _post_channel_message_to_user(self, channel: str, user: str, text: str, thread_ts: Optional[str] = None):
