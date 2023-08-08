@@ -1,4 +1,5 @@
 import pytz
+import os
 
 from unittest import TestCase
 from unittest.mock import patch
@@ -14,6 +15,7 @@ DB_ENDPOINT_URL = "http://localhost:8000"
 class PersistenceAdapterTestCase(TestCase):
 
     def setUp(self):
+        os.environ['AWS_DEFAULT_REGION'] = 'us-west-2'
         self.db = BotDB(DB_NAME, DB_ENDPOINT_URL)
         try:
             self.db.destroy_table()
