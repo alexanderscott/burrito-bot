@@ -2,8 +2,9 @@
 Slack app for giving teammates the gratitude of burritos after doing something awesome.
 Similar concept to [HeyTaco](https://www.heytaco.chat/)
 
+![BurritoBot](assets/img/burrito-150x.png)
 
-## Install
+## Install Locally
 Create a python virtualenv and install python deps
 ```shell
 # Python 3.6+ required
@@ -16,7 +17,7 @@ pip install -r requirements.txt
 
 Install local dynamodb and run it:
 ```shell
-brew install dynamo && dynamo
+brew install dynamodb-local && dynamodb-local
 ```
 
 Run dynamo migration to insert the table:
@@ -47,7 +48,7 @@ export LOG_LEVEL=DEBUG
 ## Run Locally
 ```shell
 # start local dynamodb
-dynamo
+dynamodb-local
 
 # start the app
 chalice local --port 3000
@@ -59,6 +60,14 @@ ngrok http 3000
 Then edit the Event Subscriptions callback URL in Slack App settings to point to local ngrok tunnel.
 
 See the `scripts` directory for db helpers to create the dynamodb table locally and seed it.
+
+
+## Run Tests
+These are primarily integration tests and rely on having dynamodb-local running
+```shell
+python -m unittest discover ./tests "test_*.py"
+```
+
 
 
 ## Deploy to AWS with Chalice
