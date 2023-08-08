@@ -6,7 +6,7 @@ from typing import Dict
 from slack_bolt import App
 from slack_bolt.adapter.aws_lambda.chalice_handler import ChaliceSlackRequestHandler
 
-from chalice import Chalice, Response, Cron, Rate
+from chalice import Chalice, Response, Cron
 
 from chalicelib.bot_service import BotService
 from chalicelib.slack_message import SlackMessage
