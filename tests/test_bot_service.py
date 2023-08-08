@@ -1,5 +1,3 @@
-import os
-
 from unittest import TestCase
 from unittest.mock import MagicMock
 
@@ -15,8 +13,13 @@ DB_ENDPOINT_URL = "http://localhost:8000"
 class BotServiceTests(TestCase):
 
     def setUp(self):
-        os.environ['AWS_DEFAULT_REGION'] = 'us-west-2'
-        self.db = BotDB(DB_NAME, DB_ENDPOINT_URL)
+        self.db = BotDB(
+            DB_NAME,
+            aws_access_key_id="anything",
+            aws_secret_access_key="anything",
+            region_name="us-west-2",
+            endpoint_url=DB_ENDPOINT_URL,
+        )
         self.client_mock = MagicMock()
         self.client_mock.chat_postMessage = MagicMock(return_value=None)
         self.client_mock.chat_postEphemeral = MagicMock(return_value=None)
