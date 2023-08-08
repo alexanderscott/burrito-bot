@@ -13,8 +13,17 @@ jobs:
         python-version: ["3.8"]
 
     steps:
-      - name: Setup local DynamoDB
-        run: docker run -p 8000:8000 amazon/dynamodb-local
+      - name: Setup DynamoDB Local
+        uses: rrainn/dynamodb-action@v2.0.1
+        with:
+          dbPath: # undefined by default, if this is undefined inMemory will be used
+          sharedDb: # undefined by default
+          delayTransientStatuses: # undefined by default
+          optimizeDbBeforeStartup: # undefined by default
+          port: 8000
+          cors: '*'
+#      - name: Setup local DynamoDB
+#        run: docker run -p 8000:8000 amazon/dynamodb-local
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
