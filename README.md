@@ -1,4 +1,6 @@
 # burrito-bot
+![build CI](https://github.com/alexanderscott/burrito-bot/actions/workflows/ci.yml/badge.svg)
+
 Slack app for giving teammates the gratitude of burritos after doing something awesome.
 Similar concept to [HeyTaco](https://www.heytaco.chat/)
 
