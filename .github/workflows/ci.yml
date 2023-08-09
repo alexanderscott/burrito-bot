@@ -22,8 +22,6 @@ jobs:
           optimizeDbBeforeStartup: # undefined by default
           port: 8000
           cors: '*'
-#      - name: Setup local DynamoDB
-#        run: docker run -p 8000:8000 amazon/dynamodb-local
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4

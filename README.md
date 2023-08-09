@@ -6,6 +6,12 @@ Similar concept to [HeyTaco](https://www.heytaco.chat/)
 
 ![BurritoBot](assets/img/burrito-150x.png)
 
+App is serverless, running via AWS lambda and using DynamoDB for storage.
+Uses [Chalice](https://aws.github.io/chalice/index) serverless framework for lambda scaffolding and
+[Bolt](https://slack.dev/bolt-python/concepts) for reacting to Slack @mentions and new emoji reactions.
+
+
+
 ## Install Locally
 Create a python virtualenv and install python deps
 ```shell
@@ -26,6 +32,12 @@ Run dynamo migration to insert the table:
 ```shell
 python scripts/migrate_db.py
 ```
+
+## Configure a New Slack App
+Follow the [Bolt guide here](https://slack.dev/bolt-python/tutorial/getting-started) for details on how to create and configure a new
+Slack app. The oauth tokens provided by Slack during setup are needed in app configuration.
+
+Note: you must be a Slack admin or receive approval from an admin in order to install to a Slack workspace.
 
 
 ## Configure
@@ -86,20 +98,17 @@ Then to deploy:
 chalice deploy --stage dev --no-autogen-policy
 ```
 
-## Monitor Execution
-todo
-
 
 
 ## TODO
-- [x] Testing for messages and reactions inside threads
 - ~~[ ] Handle direct messages to the bot similar to slash command request types~~
 - [ ] Clear explanation & help text from `/burritobot help` or DM to @BurritoBot
 - [ ] Weekly leaderboard roll-up message to individuals (or channel)
 - [ ] [Sentry integration](https://docs.sentry.io/platforms/python/guides/chalice/) for observability
 - [ ] Message or reaction deletion handling
 - [ ] Reactions should look for direct mentions in message text and award to those users?
-- [ ] [CI/CD for autotest + autodeploy](https://aws.github.io/chalice/topics/cd.html)
+- [x] Testing for messages and reactions inside threads
+- [x] [CI/CD for autotest + autodeploy](https://aws.github.io/chalice/topics/cd.html)
 - [x] Display emoji points remaining (under the max cap) inside the response to sender
 - [x] AWS Cloudformation template for deploy/teardown (chalice integration)
 - [x] Monthly and all-time leaderboards in addition to weekly
@@ -109,5 +118,8 @@ todo
 - [ ] Cronjob to send leaderboard update using [scheduled jobs](https://aws.github.io/chalice/api.html#Cron)?
 - [ ] Message text storage for context?
 - [ ] Lookup for [readable usernames](https://api.slack.com/methods/users.identity) and persist to db?
-- [ ] Open Source this?
 - [ ] Webpage for viewing leaderboard?
+
+
+## License
+MIT
