@@ -8,7 +8,7 @@ Similar concept to [HeyTaco](https://www.heytaco.chat/)
 
 App is serverless, running via AWS lambda and using DynamoDB for storage.
 Uses [Chalice](https://aws.github.io/chalice/index) serverless framework for lambda scaffolding and
-[Bolt](https://slack.dev/bolt-python/concepts) for reacting to Slack @mentions and new emoji reactions.
+[Bolt](https://slack.dev/bolt-python/concepts) for handling to Slack @mentions and new emoji reactions.
 
 
 
@@ -33,31 +33,6 @@ Run dynamo migration to insert the table:
 python scripts/migrate_db.py
 ```
 
-## Configure a New Slack App
-Follow the [Bolt guide here](https://slack.dev/bolt-python/tutorial/getting-started) for details on how to create and configure a new
-Slack app. The oauth tokens provided by Slack during setup are needed in app configuration.
-
-Note: you must be a Slack admin or receive approval from an admin in order to install to a Slack workspace.
-
-
-## Configure
-Copy `.chalice/config.json.sample` to `.chalice/config.json` and add Slack tokens/secrets.
-
-```
-export SLACK_SIGNING_SECRET=
-export SLACK_BOT_TOKEN=
-export VERIFICATION_TOKEN=
-export BOT_NAME=BurritoBot
-export EMOJI_PLURAL=burritos
-export EMOJI=burrito
-export SLASH_COMMAND=burritobot
-export MAX_POINTS_PER_SENDER_PER_DAY=5
-export DYNAMO_TABLE_NAME=burrito_points
-export DYNAMO_ENDPOINT_URL=http://localhost:8000
-export ADMIN_SLACK_USER=U01AP4BM8SD
-export LOG_LEVEL=DEBUG
-```
-
 
 ## Run Locally
 ```shell
@@ -80,6 +55,34 @@ See the `scripts` directory for db helpers to create the dynamodb table locally 
 These are primarily integration tests and rely on having dynamodb-local running
 ```shell
 python -m unittest discover ./tests "test_*.py"
+```
+
+
+
+
+## Configure a New Slack App
+Follow the [Bolt guide here](https://slack.dev/bolt-python/tutorial/getting-started) for details on how to create and configure a new
+Slack app. The oauth tokens provided by Slack during setup are needed in app configuration.
+
+Note: you must be a Slack admin or receive approval from an admin in order to install to a Slack workspace.
+
+
+## Environment Variables
+Copy `.chalice/config.json.sample` to `.chalice/config.json` and add Slack tokens/secrets.
+
+```
+export SLACK_SIGNING_SECRET=
+export SLACK_BOT_TOKEN=
+export VERIFICATION_TOKEN=
+export BOT_NAME=BurritoBot
+export EMOJI_PLURAL=burritos
+export EMOJI=burrito
+export SLASH_COMMAND=burritobot
+export MAX_POINTS_PER_SENDER_PER_DAY=5
+export DYNAMO_TABLE_NAME=burrito_points
+export DYNAMO_ENDPOINT_URL=http://localhost:8000
+export ADMIN_SLACK_USER=U01AP4BM8SD
+export LOG_LEVEL=DEBUG
 ```
 
 
